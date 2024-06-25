@@ -3,9 +3,13 @@
   justify-content: center;
 
 }
+.caja-c0{
+  background-color:#cfcece ;
+ 
+}
 
 .menu{
-  background-color: #474444;
+  background-color: #cfcece;
   height: 100px;
   display: flex;
   align-items: center;
@@ -42,10 +46,48 @@
 
 }
 
+
+.card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  margin: 16px;
+  width: 300px;
+  background-color: #fff;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.card .details {
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  overflow: hidden;
+}
+
+.card:hover .details {
+  max-height: 500px; /* Ajusta esto según la cantidad de contenido */
+  opacity: 1;
+}
+
+.card p {
+  margin: 8px 0;
+}
+
+.card-container {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+
+
 .contenedor-footer {
-    background-color: #282c34;
+    background-color: #242629;
     color: white;
-    padding: 40px 20px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -53,7 +95,7 @@
 
 .box-footer {
     width: 100%;
-    max-width: 1200px;
+    max-width: 1000px;
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
@@ -99,7 +141,7 @@
     margin: 0;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 568px) {
     .box-footer {
         flex-direction: column;
         align-items: flex-start;
@@ -112,7 +154,7 @@
 
 
 form {
-	max-width: 600px;
+	max-width: 500px;
 	margin: 0 auto;
 	padding: 20px;
 	background-color: #f9f9f9;
@@ -152,7 +194,7 @@ form {
   
   button {
 	display: inline-block;
-	background-color: #4CAF50;
+	background-color: aqua  ;
 	color: white;
 	padding: 10px 20px;
 	border: none;
@@ -162,7 +204,7 @@ form {
   }
   
   button:hover {
-	background-color: #45a049;
+	background-color: #21a1f1;
   }
   
   

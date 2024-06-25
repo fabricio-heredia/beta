@@ -1,6 +1,7 @@
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import "./App.css"
+
 
 const DisplayData = () => {
   const [data, setData] = useState([]);
@@ -18,24 +19,28 @@ const DisplayData = () => {
   }, []);
 
   return (
-    <div>
-      <h2>Datos Recibidos</h2>
-      <ul>
+    <div className='box-card'>
+      <h2>Medicos Disponibles</h2>
+      <div className="card-container">
         {data.map((item, index) => (
-          <li key={index}>
-            <p>Nombre: {item.nombre}</p>
-            <p>Email: {item.email}</p>
-            <p>Especialidad: {item.especialidad}</p>
-            <p>Horarios De Atencion: {item.horarios}</p>
-            <p>Direccion: {item.direccion}</p>
-            <p>Provincia: {item.provincia}</p>
-            <p>Cedula Profecional: {item.cedula}</p>
-            <p>Biografía: {item.biografia}</p>
-          </li>
+          <div key={index} className="card">
+            <p><strong>Nombre:</strong> {item.nombre}</p>
+            <p><strong>Especialidad:</strong> {item.especialidad}</p>
+            <div className="details">
+              <p><strong>Email:</strong> {item.email}</p>
+              <p><strong>Horarios De Atencion:</strong> {item.horarios}</p>
+              <p><strong>Direccion:</strong> {item.direccion}</p>
+              <p><strong>Provincia:</strong> {item.provincia}</p>
+              <p><strong>Cedula Profecional:</strong> {item.cedula}</p>
+              <p><strong>Biografía:</strong> {item.biografia}</p>
+              
+            </div>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
 
 export default DisplayData;
+

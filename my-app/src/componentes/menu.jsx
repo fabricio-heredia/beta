@@ -4,7 +4,7 @@ import '../App.css'
     function Menu() {
         return (
             <div className="menu">
-            <h2> App Medicos</h2>
+            <h2> Medicals</h2>
             <ul>
               <li><a href="#">Inicio</a></li>
               <li><a href="#">Acerca de</a></li>

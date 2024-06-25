@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import "../App.css";
 
 const Form = () => {
   const [formData, setFormData] = useState({
@@ -15,6 +16,8 @@ const Form = () => {
     biografia: ''
   });
 
+  const [isFormVisible, setIsFormVisible] = useState(false);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -28,57 +31,65 @@ const Form = () => {
     try {
       await axios.post('http://localhost:5000/api/form', formData);
       alert('Datos enviados exitosamente');
+      setIsFormVisible(false);
     } catch (error) {
       console.error('Error enviando los datos:', error);
     }
   };
 
+  const handleCancel = () => {
+    setIsFormVisible(false);
+  };
+
   return (
-    <form onSubmit={handleSubmit}>
-      <label>Nombre:
-        <input type="text" name="nombre" value={formData.nombre} onChange={handleChange} required />
-      </label><br />
-      
-      <label>Correo Electrónico:
-        <input type="email" name="email" value={formData.email} onChange={handleChange} required />
-      </label><br />
-      
-      <label>Contraseña:
-        <input type="password" name="password" value={formData.password} onChange={handleChange} required />
-      </label><br />
-      
-      <label>Especialidad:
-      <input type="text" name="especialidad" value={formData.especialidad} onChange={handleChange} required />
-      </label><br />
-      
-      <label>Horarios De Atencion:
-      <input type="text" name="horarios" value={formData.horarios} onChange={handleChange} required />
-      </label><br />
+    <div>
+      {!isFormVisible && (
+        <button onClick={() => setIsFormVisible(true)}>Registrarse</button>
+      )}
 
-      <label>Direccion De La Clinica/Consultorio:
-      <input type="text" name="direccion" value={formData.direccion} onChange={handleChange} required />
-      </label><br />
+      {isFormVisible && (
+        <form onSubmit={handleSubmit}>
+          <label>Nombre:
+            <input type="text" name="nombre" value={formData.nombre} onChange={handleChange} required />
+          </label><br />
+          
+          <label>Correo Electrónico:
+            <input type="email" name="email" value={formData.email} onChange={handleChange} required />
+          </label><br />
+          
+          <label>Contraseña:
+            <input type="password" name="password" value={formData.password} onChange={handleChange} required />
+          </label><br />
+          
+          <label>Especialidad:
+            <input type="text" name="especialidad" value={formData.especialidad} onChange={handleChange} required />
+          </label><br />
+          
+          <label>Horarios De Atencion:
+            <input type="text" name="horarios" value={formData.horarios} onChange={handleChange} required />
+          </label><br />
 
-      <label>Género:
-        <input type="radio" name="genero" value="hombre" checked={formData.genero === 'hombre'} onChange={handleChange} /> Hombre
-        <input type="radio" name="genero" value="mujer" checked={formData.genero === 'mujer'} onChange={handleChange} /> Mujer
-        <input type="radio" name="genero" value="otro" checked={formData.genero === 'otro'} onChange={handleChange} /> Otro
-      </label><br />
-      
-      <label>Provincia:
-      <input type="text" name="provincia" value={formData.provincia} onChange={handleChange} required />
-      </label><br />
+          <label>Direccion De La Clinica/Consultorio:
+            <input type="text" name="direccion" value={formData.direccion} onChange={handleChange} required />
+          </label><br />
+          
+          <label>Provincia:
+            <input type="text" name="provincia" value={formData.provincia} onChange={handleChange} required />
+          </label><br />
 
-      <label>Cedula Profecional:
-      <input type="text" name="cedula" value={formData.cedula} onChange={handleChange} required />
-      </label><br />
-      
-      <label>Biografía:
-        <textarea name="biografia" value={formData.biografia} onChange={handleChange}></textarea>
-      </label><br />
-      
-      <button type="submit">Mandar Registro</button>
-    </form>
+          <label>Cedula Profecional:
+            <input type="text" name="cedula" value={formData.cedula} onChange={handleChange} required />
+          </label><br />
+          
+          <label>Biografía:
+            <textarea name="biografia" value={formData.biografia} onChange={handleChange}></textarea>
+          </label><br />
+          
+          <button type="submit">Mandar Registro</button>
+          <button type="button" onClick={handleCancel}>Cancelar</button>
+        </form>
+      )}
+    </div>
   );
 };
 

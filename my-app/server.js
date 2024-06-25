@@ -19,7 +19,6 @@ const formSchema = new mongoose.Schema({
   especialidad: String,
   horarios: String,
   direccion: String,
-  genero: String,
   provincia: String,
   cedula: String,
   biografia: String

@@ -27,8 +27,7 @@ const DisplayData = () => {
             <p>Email: {item.email}</p>
             <p>Especialidad: {item.especialidad}</p>
             <p>Horarios De Atencion: {item.horarios}</p>
-            <p>Direccion: {item.Direccion}</p>
-            <p>Género: {item.genero}</p>
+            <p>Direccion: {item.direccion}</p>
             <p>Provincia: {item.provincia}</p>
             <p>Cedula Profecional: {item.cedula}</p>
             <p>Biografía: {item.biografia}</p>

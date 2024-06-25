@@ -8,11 +8,11 @@ function Footer() {
  <div className="contenedor-footer">
     <div className="box-footer">
       <div className="logo2">
-        <h4>Trabajo Practico</h4>
+        <h4>Medicals</h4>
       </div>
       <div className="terminos">
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore architecto animi sed alias praesentium minima sint eius. Velit itaque atque in accusantium laboriosam nobis quaerat?.
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore architecto animi sed alias praesentium minima Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam doloribus explicabo doloremque, itaque odio culpa delectus neque, libero commodi, a excepturi dolore nobis quo veniam beatae pariatur voluptas debitis asperiores? sint eius. Velit itaque atque in accusantium laboriosam nobis quaerat?.
         </p>
       </div>
     </div>
@@ -41,7 +41,7 @@ function Footer() {
   <div className="box-copy">
     <hr />
     <p>
-      Todos los derechos reservados © 2023 <b>Los Borbotones</b>
+      Todos los derechos reservados © 2024 <b>Medicals</b>
     </p>
   </div>
   </div>

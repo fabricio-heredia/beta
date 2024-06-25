@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const Reserva = require('./models/Reservas');  
 
 const app = express();
 app.use(cors());
@@ -42,6 +43,17 @@ app.get('/api/form', async (req, res) => {
     res.status(200).send(formData);
   } catch (error) {
     res.status(500).send(error);
+  }
+});
+
+
+app.post('/api/reserva', async (req, res) => {
+  try {
+    const reservaData = new Reserva(req.body);
+    await reservaData.save();
+    res.status(201).send(reservaData);
+  } catch (error) {
+    res.status(400).send(error);
   }
 });
 

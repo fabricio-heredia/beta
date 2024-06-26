@@ -28,7 +28,7 @@ mother-box {
 
  }
  a{
-  color: rgb(30, 166, 171);
+  color: rgb(0, 0, 0);
   text-decoration: none;
  }
  .menu ul li :hover{
@@ -194,7 +194,7 @@ form {
   button {
 	display: inline-block;
 	background-color: aqua  ;
-	color: white;
+	color: rgb(0, 0, 0);
 	padding: 10px 20px;
 	border: none;
 	border-radius: 4px;

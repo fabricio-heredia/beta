@@ -17,13 +17,6 @@ function Footer() {
       </div>
     </div>
     <div className="box-footer">
-      <h2>Soluciones</h2>
-      <a href="#">Promocion Online</a>
-      <a href="#">Marketing</a>
-      <a href="#">Desarrollo</a>
-      <a href="#">Venta online</a>
-    </div>
-    <div className="box-footer">
       <h2>Compañia</h2>
       <a href="#">Acerca de</a>
       <a href="#">Trabajo</a>

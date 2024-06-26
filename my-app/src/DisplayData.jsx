@@ -5,6 +5,7 @@ import "./App.css"
 const DisplayData = () => {
   const [data, setData] = useState([]);
   const [reserva, setReserva] = useState({ fecha: '', usuario: '' });
+  const [reservas, setReservas] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -15,7 +16,20 @@ const DisplayData = () => {
         console.error('Error fetching the data:', error);
       }
     };
+
+    const fetchReservas = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/api/reservas');
+        const now = new Date();
+        const filteredReservas = response.data.filter(reserva => new Date(reserva.fecha) > now);
+        setReservas(filteredReservas);
+      } catch (error) {
+        console.error('Error fetching the reservations:', error);
+      }
+    };
+
     fetchData();
+    fetchReservas();
   }, []);
 
   const handleReservaChange = (e) => {
@@ -26,13 +40,32 @@ const DisplayData = () => {
   const handleReservaSubmit = async (e, medicoId) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/reserva', { ...reserva, medicoId });
+      const response = await axios.post('http://localhost:5000/api/reserva', { ...reserva, medicoId });
       alert('Reserva creada exitosamente');
+      setReservas([...reservas, response.data]);
       setReserva({ fecha: '', usuario: '' });
     } catch (error) {
       console.error('Error creando la reserva:', error);
     }
   };
+
+  const getCurrentDateTime = () => {
+    const now = new Date();
+    const offset = now.getTimezoneOffset() * 60000;
+    const localISOTime = new Date(now - offset).toISOString().slice(0, 16);
+    return localISOTime;
+  };
+
+  const removePastReservations = async () => {
+    const now = new Date();
+    const updatedReservas = reservas.filter(reserva => new Date(reserva.fecha) > now);
+    setReservas(updatedReservas);
+  };
+
+  useEffect(() => {
+    const interval = setInterval(removePastReservations, 60000); // Check every minute
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div>
@@ -53,7 +86,7 @@ const DisplayData = () => {
             <form className="reserva-form" onSubmit={(e) => handleReservaSubmit(e, item._id)}>
               <label>
                 Fecha:
-                <input type="datetime-local" name="fecha" value={reserva.fecha} onChange={handleReservaChange} required />
+                <input type="datetime-local" name="fecha" value={reserva.fecha} min={getCurrentDateTime()} onChange={handleReservaChange} required />
               </label>
               <label>
                 Nombre Del Paciente:
@@ -64,9 +97,17 @@ const DisplayData = () => {
           </div>
         ))}
       </div>
+      <h2>Lista de Pacientes que Agendaron Cita</h2>
+      <ol>
+        {reservas.map((reserva, index) => (
+          <li key={index}>
+            <p><strong>Paciente:</strong> {reserva.usuario}</p>
+            <p><strong>Fecha:</strong> {new Date(reserva.fecha).toLocaleString()}</p>
+          </li>
+        ))}
+      </ol>
     </div>
   );
 };
 
 export default DisplayData;
-

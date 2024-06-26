@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const Reserva = require('./models/Reservas');  
+const Reserva = require('./src/componentes/Reserva');
 
 const app = express();
 app.use(cors());
@@ -46,7 +46,6 @@ app.get('/api/form', async (req, res) => {
   }
 });
 
-
 app.post('/api/reserva', async (req, res) => {
   try {
     const reservaData = new Reserva(req.body);
@@ -54,6 +53,25 @@ app.post('/api/reserva', async (req, res) => {
     res.status(201).send(reservaData);
   } catch (error) {
     res.status(400).send(error);
+  }
+});
+
+app.get('/api/reservas', async (req, res) => {
+  try {
+    const reservas = await Reserva.find();
+    res.status(200).send(reservas);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
+app.delete('/api/reservas/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    await Reserva.findByIdAndDelete(id);
+    res.status(200).send({ message: 'Reserva eliminada correctamente' });
+  } catch (error) {
+    res.status(500).send(error);
   }
 });
 

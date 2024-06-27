@@ -8,12 +8,20 @@ import { AuthProvider } from "./auth/AuthProvider.tsx";
 import Dashboard from "./routes/Dashboard.tsx";
 import ProtectedRoute from "./routes/ProtectedRoute.tsx";
 import Profile from "./routes/Profile.tsx";
+import DefaultLayout from "./layout/DefaultLayout.tsx";
+import User from "./routes/User.tsx";
+
 
 import "./index.css";
+
 
 const router = createBrowserRouter([
   {
     path: "/",
+    element: <DefaultLayout/>,
+  },
+  {
+    path: "/login",
     element: <Login />,
   },
   {
@@ -31,6 +39,10 @@ const router = createBrowserRouter([
       {
         path: "/me",
         element: <Profile />,
+      },
+      {
+        path: "/user",
+        element: <User />,
       },
     ],
   },

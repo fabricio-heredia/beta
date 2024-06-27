@@ -40,7 +40,7 @@ export default function PortalLayout({ children }: PortalLayoutProps) {
               <Link to="/me">Prerfil</Link>
             </li>
             <li>
-              <Link to="/me">{auth.getUser()?.username ?? ""}</Link>
+              <Link to="/user">{auth.getUser()?.username ?? ""}</Link>
             </li>
             <li>
               <a href="#" onClick={handleSignOut}>

@@ -1,6 +1,8 @@
 
 import '../App.css'
 
+import { FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
+
 
 function Footer() {
     return (
@@ -12,10 +14,25 @@ function Footer() {
       </div>
       <div className="terminos">
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore architecto animi sed alias praesentium minima Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam doloribus explicabo doloremque, itaque odio culpa delectus neque, libero commodi, a excepturi dolore nobis quo veniam beatae pariatur voluptas debitis asperiores? sint eius. Velit itaque atque in accusantium laboriosam nobis quaerat?.
+          Medicals es una pagina especializada en ayudar a encontrarte con tu especialista de cabezera dedicada, podes registrarte, solicitar turnos y confirmarlos ademas de revisar nuestra lista de profesionales disponibles.
+          <br /> Ademas de siempre poder despejar todas tus dudas mediante nuestro Chat-Bot A.I. o contactarte con nuestros especialistas desde la pagina "contacto". Recorda que estamos siempre disponibles para asesorarte en lo que necesites.
         </p>
       </div>
     </div>
+    <footer className="footer">
+      <div className="social-icons">
+        <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+          <FaFacebook size={50} />
+        </a>
+        <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+          <FaInstagram size={50} />
+        </a>
+        <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">
+          <FaTwitter size={50} />
+        </a>
+      </div>
+    </footer>
+
     <div className="box-footer">
       <h2>Soluciones</h2>
       <a href="#">Promocion Online</a>
@@ -29,13 +46,6 @@ function Footer() {
       <a href="#">Trabajo</a>
       <a href="#">Procesos</a>
       <a href="#">Servicio</a>
-    </div>
-    <div className="box-footer">
-      <h2>Redes sociales</h2>
-      <a href="#">Facebook</a>
-      <a href="#">Twitter</a>
-      <a href="#">Linkedin</a>
-      <a href="#">Instagram</a>
     </div>
   </div>
   <div className="box-copy">

@@ -1,8 +1,9 @@
 import { useState } from "react";
-import DefaultLayout from "../layout/DefaultLayout";
+
 import { useAuth } from "../auth/AuthProvider";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate, useNavigate,Link } from "react-router-dom";
 import { AuthResponse, AuthResponseError } from "../types/types";
+import React from "react";
 
 export default function Signup() {
   const [username, setUsername] = useState("");
@@ -45,25 +46,41 @@ export default function Signup() {
   }
 
   return (
-    <DefaultLayout>
+    <>
+           <header>
+        <nav>
+        <ul>
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
+            <li>
+              <Link to="/signup">Registro</Link>
+              
+            </li>
+            <li>
+              <Link to="/">Inicio</Link>
+            </li>
+          </ul>
+        </nav>
+      </header>
       <form onSubmit={handleSubmit} className="form">
         <h1>Signup</h1>
         {!!errorResponse && <div className="errorMessage">{errorResponse}</div>}
-        <label>Name</label>
+        <label>Nombre</label>
         <input
           type="text"
           name="name"
           onChange={(e) => setName(e.target.value)}
           value={name}
         />
-        <label>Username</label>
+        <label>Nombre De Usuario</label>
         <input
           type="text"
           name="username"
           onChange={(e) => setUsername(e.target.value)}
           value={username}
         />
-        <label>Password</label>
+        <label>Contraseña</label>
         <input
           type="password"
           name="password"
@@ -72,7 +89,8 @@ export default function Signup() {
         />
 
         <button>Create account</button>
-      </form>
-    </DefaultLayout>
+       
+      </form></>
+    
   );
 }

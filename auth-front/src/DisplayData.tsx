@@ -1,27 +1,11 @@
-import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import "./App.css"
+import "./App.css";
 
-interface Medico {
-  _id: string;
-  nombre: string;
-  especialidad: string;
-  email: string;
-  horarios: string;
-  direccion: string;
-  provincia: string;
-  cedula: string;
-  biografia: string;
-}
 
-interface Reserva {
-  fecha: string;
-  usuario: string;
-}
-
-const DisplayData: React.FC = () => {
-  const [data, setData] = useState<Medico[]>([]);
-  const [reserva, setReserva] = useState<Reserva>({ fecha: '', usuario: '' });
+const DisplayData = () => {
+  const [data, setData] = useState([]);
+  const [reserva, setReserva] = useState({ fecha: '', usuario: '' });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -35,12 +19,12 @@ const DisplayData: React.FC = () => {
     fetchData();
   }, []);
 
-  const handleReservaChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleReservaChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setReserva({ ...reserva, [name]: value });
   };
 
-  const handleReservaSubmit = async (e: FormEvent<HTMLFormElement>, medicoId: string) => {
+  const handleReservaSubmit = async (e: React.FormEvent<HTMLFormElement>, medicoId: string) => {
     e.preventDefault();
     try {
       await axios.post('http://localhost:5000/api/reserva', { ...reserva, medicoId });
@@ -51,12 +35,22 @@ const DisplayData: React.FC = () => {
     }
   };
 
+  const getCurrentDateTime = () => {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    return `${year}-${month}-${day}T${hours}:${minutes}`;
+  };
+
   return (
     <div>
       <h2>Medicos Disponibles</h2>
       <div className="card-container">
-        {data.map((item) => (
-          <div key={item._id} className="card">
+        {data.map((item: any, index: number) => (
+          <div key={index} className="card">
             <p><strong>Nombre:</strong> {item.nombre}</p>
             <p><strong>Especialidad:</strong> {item.especialidad}</p>
             <div className="details">
@@ -64,17 +58,30 @@ const DisplayData: React.FC = () => {
               <p><strong>Horarios De Atencion:</strong> {item.horarios}</p>
               <p><strong>Direccion:</strong> {item.direccion}</p>
               <p><strong>Provincia:</strong> {item.provincia}</p>
-              <p><strong>Cedula Profesional:</strong> {item.cedula}</p>
+              <p><strong>Cedula Profecional:</strong> {item.cedula}</p>
               <p><strong>Biografía:</strong> {item.biografia}</p>
             </div>
             <form className="reserva-form" onSubmit={(e) => handleReservaSubmit(e, item._id)}>
               <label>
                 Fecha:
-                <input type="datetime-local" name="fecha" value={reserva.fecha} onChange={handleReservaChange} required />
+                <input
+                  type="datetime-local"
+                  name="fecha"
+                  value={reserva.fecha}
+                  onChange={handleReservaChange}
+                  required
+                  min={getCurrentDateTime()} // Establecer el valor mínimo
+                />
               </label>
               <label>
                 Nombre Del Paciente:
-                <input type="text" name="usuario" value={reserva.usuario} onChange={handleReservaChange} required />
+                <input
+                  type="text"
+                  name="usuario"
+                  value={reserva.usuario}
+                  onChange={handleReservaChange}
+                  required
+                />
               </label>
               <button type="submit">Agendar Consulta</button>
             </form>
@@ -86,5 +93,3 @@ const DisplayData: React.FC = () => {
 };
 
 export default DisplayData;
-
-

@@ -1,8 +1,9 @@
 import { useState } from "react";
 import DefaultLayout from "../layout/DefaultLayout";
 import { useAuth } from "../auth/AuthProvider";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { AuthResponse, AuthResponseError } from "../types/types";
+import React from "react";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -50,18 +51,35 @@ export default function Login() {
     return <Navigate to="/dashboard" />;
   }
   return (
-    <DefaultLayout>
+    
+    <>
+         <header>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
+            <li>
+              <Link to="/signup">Registro</Link>
+              
+            </li>
+            <li>
+              <Link to="/">Inicio</Link>
+            </li>
+          </ul>
+        </nav>
+      </header>
       <form onSubmit={handleSubmit} className="form">
         <h1>Login</h1>
         {!!errorResponse && <div className="errorMessage">{errorResponse}</div>}
-        <label>Username</label>
+        <label>Nombre De Usuario</label>
         <input
           name="username"
           type="text"
           onChange={handleChange}
           value={username}
         />
-        <label>Password</label>
+        <label>Contraseña</label>
         <input
           type="password"
           name="password"
@@ -70,7 +88,8 @@ export default function Login() {
         />
 
         <button>Login</button>
-      </form>
-    </DefaultLayout>
+        
+      </form></>
+    
   );
 }

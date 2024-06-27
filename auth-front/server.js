@@ -4,7 +4,6 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import Reserva from './models/Reservas.js';
 
-
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
@@ -54,6 +53,15 @@ app.post('/api/reserva', async (req, res) => {
     res.status(201).send(reservaData);
   } catch (error) {
     res.status(400).send(error);
+  }
+});
+
+app.get('/api/reserva', async (req, res) => {
+  try {
+    const reservas = await Reserva.find().populate('medicoId');
+    res.status(200).send(reservas);
+  } catch (error) {
+    res.status(500).send(error);
   }
 });
 

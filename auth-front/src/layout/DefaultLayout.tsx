@@ -3,7 +3,7 @@ import React from "react";
 import Menu from '../componentes/menu';
 import DisplayData from '../DisplayData';
 import Footer from "../componentes/footer";
-import DisplayDateTime from "../componentes/DisplayDateTime";
+
 
 interface DefaultLayoutProps {
   children?: React.ReactNode;

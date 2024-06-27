@@ -34,7 +34,7 @@ export default function PortalLayout({ children }: PortalLayoutProps) {
         <nav>
           <ul>
             <li>
-              <Link to="/dashboard">Dashboard</Link>
+              <Link to="/dashboard">Inicio</Link>
             </li>
             <li>
               <Link to="/me">Prerfil</Link>

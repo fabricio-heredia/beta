@@ -25,7 +25,7 @@ const DisplayDateTime: React.FC = () => {
 
   return (
     <div>
-      <h2>Reservas Registradas</h2>
+      <h2>Citas Registradas</h2>
       <ul>
         {reservas.length > 0 ? (
           reservas.map((reserva, index) => (

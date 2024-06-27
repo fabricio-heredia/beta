@@ -232,3 +232,21 @@ form {
   .social-icons a:hover {
     color: #21a1f1;
   }
+  /* Estilos para el campo de búsqueda */
+.search-container {
+  margin-bottom: 20px;
+  width: 30%;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #007bff; /* Color de borde al enfocar */
+}

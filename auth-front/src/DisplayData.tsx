@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import "./App.css";
-
+import "./App.css"
 
 const DisplayData = () => {
   const [data, setData] = useState([]);
   const [reserva, setReserva] = useState({ fecha: '', usuario: '' });
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -45,11 +45,28 @@ const DisplayData = () => {
     return `${year}-${month}-${day}T${hours}:${minutes}`;
   };
 
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const filteredData = data.filter((item: any) =>
+    item.especialidad.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div>
       <h2>Medicos Disponibles</h2>
+      <div className="search-container">
+        <input
+          type="text"
+          className="search-input"
+          placeholder="Buscar por especialidad"
+          value={searchTerm}
+          onChange={handleSearchChange}
+        />
+      </div>
       <div className="card-container">
-        {data.map((item: any, index: number) => (
+        {filteredData.map((item: any, index: number) => (
           <div key={index} className="card">
             <p><strong>Nombre:</strong> {item.nombre}</p>
             <p><strong>Especialidad:</strong> {item.especialidad}</p>

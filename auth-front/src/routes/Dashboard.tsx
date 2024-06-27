@@ -4,8 +4,7 @@ import { useAuth } from "../auth/AuthProvider";
 import { API_URL } from "../auth/authConstants";
 
 import Menu from '../componentes/menu';
-import DisplayData from '../DisplayData';
-import Form from '../componentes/Form';
+
 import Footer from "../componentes/footer";
 import DisplayData1 from "../DisplayData1";
 
